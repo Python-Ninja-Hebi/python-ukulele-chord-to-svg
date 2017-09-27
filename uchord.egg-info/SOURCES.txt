@@ -1,0 +1,7 @@
+README.rst
+setup.py
+uchord.py
+uchord.egg-info/PKG-INFO
+uchord.egg-info/SOURCES.txt
+uchord.egg-info/dependency_links.txt
+uchord.egg-info/top_level.txt
