@@ -134,7 +134,7 @@ display(SVG(c.to_svg()))
 ```
 
 
-![svg](output_37_0.svg)
+![svg](pic/output_37_0.svg)
 
 
 You can define your magic command for chords
@@ -190,7 +190,7 @@ C7, 0001, fingers=___1, subtexts=_R_7
 ```
 
 
-![svg](output_41_0.svg)
+![svg](pic/output_41_0.svg)
 
 
 # Source
