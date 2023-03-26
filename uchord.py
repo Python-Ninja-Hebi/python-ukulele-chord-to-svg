@@ -26,12 +26,28 @@ class Chord:
 
     """
 
-    def __init__(self, name, frets, starting_fret=1, fingers="", subtexts=""):
+    def __init__(self, name, frets, starting_fret=-1, fingers="", subtexts=""):
         self.name = name
-        self.starting_fret = starting_fret
         self.frets = frets
         self.fingers = fingers
         self.subtexts = subtexts
+        self.starting_fret = self._calculate_starting_fret(starting_fret, self.frets)
+
+    def _calculate_starting_fret(self,starting_fret,frets):
+
+        if starting_fret != -1:
+            return starting_fret
+
+        max_fret = -1
+        num_visible_frets = 4
+
+        for i in range(4):
+            max_fret = max(max_fret,int(frets[i]))
+
+        if max_fret <= num_visible_frets:
+            return 1
+        else:
+            return max_fret - num_visible_frets + 1
 
     def to_svg(self):
         """
@@ -146,18 +162,18 @@ class Chords:
         self._chordlist = chordlist
 
     def to_svg(self):
-        result = """<svg width="100%" height="100%" style="font-family: sans-serif; font-size: 11px;" 
+        result = f"""<svg width="{len(self._chordlist)*84}" height="132" style="font-family: sans-serif; font-size: 11px;" 
                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         """
         for i in range(len(self._chordlist)):
-            result += '<g transform="translate({},24)">'.format(i * 80)
+            result += f'<g transform="translate({i * 80},24)">'
             result += self._chordlist[i]._to_svg()
             result += '</g>'
         result += "</svg>"
         return result
 
 
-def write_chord(filename, name, frets, starting_fret=1, fingers="", subtexts=""):
+def write_chord(filename, name, frets, starting_fret=-1, fingers="", subtexts=""):
     """
     Convenient way to write an svg file
     :param filename: name of svg file
@@ -173,5 +189,5 @@ def write_chord(filename, name, frets, starting_fret=1, fingers="", subtexts="")
         f.write(Chord(name, frets, starting_fret, fingers, subtexts).to_svg())
 
 
-write_chord('pic/dm7.svg','Dm7','7988',fingers='1423',starting_fret=6)
+write_chord('pic/gm7.svg','Gm7','3535',fingers='1234')
 

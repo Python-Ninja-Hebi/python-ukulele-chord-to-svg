@@ -1,4 +1,3 @@
-
 # Creating Ukulele Chord Diagrams in SVG with Python
 
 With the Python modul __uchord__ you can create ukulele chord diagrams in SVG format.   
@@ -123,7 +122,7 @@ With *IPython.display* you can use the chords in a notebook.
 
 ```python
 from IPython.display import SVG, display
-from uchord import Chords
+from uchord import Chords, Chord
 
 c = Chords([Chord("F7","2313",fingers="2314",subtexts="__R_"),
             Chord("C7","0001",fingers="___1",subtexts="_R__"),
@@ -134,8 +133,16 @@ display(SVG(c.to_svg()))
 ```
 
 
-![svg](pic/output_37_0.svg)
+    
+![svg](output_37_0.svg)
+    
 
+
+
+```python
+with open('chords.svg', 'w') as f:
+        f.write(c.to_svg())
+```
 
 You can define your magic command for chords
 
@@ -153,7 +160,7 @@ def uchord(line, cell):
     chordlist = []
     name = "" 
     frets = ""
-    starting_fret=1
+    starting_fret=-1
     fingers=""
     subtexts=""
     
@@ -190,8 +197,208 @@ C7, 0001, fingers=___1, subtexts=_R_7
 ```
 
 
-![svg](pic/output_41_0.svg)
+    
+![svg](output_42_0.svg)
+    
 
+
+# Songs
+
+## Bonnie und Clyde
+
+Verse
+
+
+```python
+%%uchord
+G, 0232
+Em7, 0202
+A7sus4, 0200
+Cadd9, 0203
+```
+
+
+    
+![svg](output_46_0.svg)
+    
+
+
+
+```python
+%%uchord
+D, 2220
+Dsus2, 2200
+```
+
+
+    
+![svg](output_47_0.svg)
+    
+
+
+Pre Chorus
+
+
+```python
+%%uchord
+Cadd9, 0203
+Dadd11, 2230
+Em7, 0202
+```
+
+
+    
+![svg](output_49_0.svg)
+    
+
+
+## II V I
+
+### V
+
+
+```python
+%%uchord
+A7, 0100, fingers=_1__, subtexts=___R
+G7, 0212, fingers=_213, subtexts=R__3
+F7, 2313, fingers=2314, subtexts=__R5
+C7, 0001, fingers=___1, subtexts=_R_7
+```
+
+
+    
+![svg](output_52_0.svg)
+    
+
+
+### II
+
+
+```python
+%%uchord
+Am7, 0000, fingers=____, subtexts=___R
+Gm7, 0211, fingers=_211, subtexts=R__3
+Fm7, 1313, fingers=2314, subtexts=__R5
+Dm7, 2213, fingers=2213, subtexts=_R_7
+```
+
+
+    
+![svg](output_54_0.svg)
+    
+
+
+### I
+
+
+```python
+%%uchord
+Amaj7, 1100, fingers=12__, subtexts=___R
+Gmaj7, 0222, fingers=_111, subtexts=R__3
+Fmaj7, 1413, fingers=2413, subtexts=__R5
+Cmaj7, 0002, fingers=___1, subtexts=_R_7
+```
+
+
+    
+![svg](output_56_0.svg)
+    
+
+
+## II V I G
+
+
+```python
+%%uchord
+G6, 0202, fingers=_2_3, subtexts=R___
+Edim7, 0101, fingers=_2_3
+Am7, 0000, subtexts=7__R
+D7, 2223, fingers=1112, subtexts=_R_7
+```
+
+
+    
+![svg](output_58_0.svg)
+    
+
+
+
+```python
+%%uchord
+G6, 4435, fingers=2213, subtexts=__R_
+Edim7, 3434, fingers=1324, subtexts=_R__
+Am7, 2433, subtexts=R___
+D7, 2223, fingers=1112, subtexts=_R_7
+```
+
+
+    
+![svg](output_59_0.svg)
+    
+
+
+
+```python
+%%uchord
+G6, 7777, fingers=1111, subtexts=_R__
+Edim7, 6767, fingers=1324, subtexts=___R
+Am7, 5757, subtexts=__R_
+D7, 5655, fingers=1211, subtexts=____
+```
+
+
+    
+![svg](output_60_0.svg)
+    
+
+
+## chords
+
+| KEY | 1 | 2m | 3m | 4   | 5 | 5-7 | 6m |
+|:---:|:------------:|:-----------:|:------:|:------:|:------:|:------:|:------:|
+| C |![](chords/c.svg "")|![](chords/dm.svg "")|![](chords/em.svg "")|![](chords/f.svg "")|![](chords/g.svg "")|![](chords/g7.svg "")|![](chords/am.svg "")|
+| F |![](chords/f.svg "")|![](chords/gm.svg "")|![](chords/am.svg "")|![](chords/bb.svg "")|![](chords/c.svg "")|![](chords/c7.svg "")|![](chords/dm.svg "")|
+| Bb |![](chords/bb.svg "")|![](chords/cm.svg "")|![](chords/dm.svg "")|![](chords/eb.svg "")|![](chords/f.svg "")|![](chords/f7.svg "")|![](chords/gm.svg "")|
+| Eb |![](chords/eb.svg "")|![](chords/fm.svg "")|![](chords/gm.svg "")|![](chords/ab.svg "")|![](chords/bb.svg "")|![](chords/bb7.svg "")|![](chords/cm.svg "")|
+| E |![](chords/e.svg "")|![](chords/fism.svg "")|![](chords/gism.svg "")|![](chords/a.svg "")|![](chords/b.svg "")|![](chords/b7.svg "")|![](chords/cism.svg "")|
+| A |![](chords/a.svg "")|![](chords/bm.svg "")|![](chords/cism.svg "")|![](chords/d.svg "")|![](chords/e.svg "")|![](chords/e7.svg "")|![](chords/fism.svg "")|
+| D |![](chords/d.svg "")|![](chords/em.svg "")|![](chords/fism.svg "")|![](chords/g.svg "")|![](chords/a.svg "")|![](chords/a7.svg "")|![](chords/bm.svg "")|
+| G |![](chords/g.svg "")|![](chords/am.svg "")|![](chords/bm.svg "")|![](chords/c.svg "")|![](chords/d.svg "")|![](chords/d7.svg "")|![](chords/em.svg "")|
+
+
+
+```python
+import uchord
+
+uchord.write_chord('chords/c.svg','C','0003')
+uchord.write_chord('chords/cm.svg','Cm','0333')
+uchord.write_chord('chords/c7.svg','C7','0001')
+uchord.write_chord('chords/cism.svg','Cism','1102')
+uchord.write_chord('chords/d.svg','D','2220')
+uchord.write_chord('chords/d7.svg','D7','2223')
+uchord.write_chord('chords/dm.svg','Dm','2210')
+uchord.write_chord('chords/eb.svg','Eb','3331')
+uchord.write_chord('chords/e.svg','E','4442')
+uchord.write_chord('chords/e7.svg','E7','1202')
+uchord.write_chord('chords/em.svg','Em','0432')
+uchord.write_chord('chords/f.svg','F','2010')
+uchord.write_chord('chords/fm.svg','Fm','1013')
+uchord.write_chord('chords/f7.svg','F7','2313')
+uchord.write_chord('chords/fism.svg','Fism','2120')
+uchord.write_chord('chords/g.svg','G','0232')
+uchord.write_chord('chords/gm.svg','Gm','0231')
+uchord.write_chord('chords/g7.svg','G7','0212')
+uchord.write_chord('chords/gism.svg','Gism','4342')
+uchord.write_chord('chords/ab.svg','Ab','5343')
+uchord.write_chord('chords/a.svg','A','2100')
+uchord.write_chord('chords/a7.svg','A7','0100')
+uchord.write_chord('chords/am.svg','Am','2000')
+uchord.write_chord('chords/bb.svg','Bb','3211')
+uchord.write_chord('chords/bb7.svg','Bb7','1211')
+uchord.write_chord('chords/b.svg','B','4322')
+uchord.write_chord('chords/bm.svg','Bm','4222')
+uchord.write_chord('chords/b7.svg','B7','2322')
+```
 
 # Source
 
